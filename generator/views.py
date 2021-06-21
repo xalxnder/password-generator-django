@@ -5,18 +5,21 @@ import random
 # Create your views here.
 
 def home(request):
-    return render(request, 'generator/index.html', {'password': 'jhasjhdsjh'})
+    return render(request, 'generator/index.html',)
 
 def password(request):
     password_length = int(request.GET.get('length'))
     uppercase_selected = request.GET.get('uppercase')
     special_selected  = request.GET.get('special')
     numbers_selected = request.GET.get('numbers')
-    chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','0']
+    chars = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    chars_upper = [ 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z','0']
     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9',]
     special_chars = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
     password = []
     while len(password) < password_length:
+        if uppercase_selected:
+            chars.extend(chars_upper)
         if numbers_selected:
             chars.extend(nums)
         if special_selected:
